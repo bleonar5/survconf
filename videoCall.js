@@ -63,9 +63,6 @@ AgoraRTC.onCameraChanged = async (changedDevice) => {
 }
 
 
-function startJoin(){
-	async join();
-}
 
 
 /*
