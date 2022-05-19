@@ -28,12 +28,12 @@ var remoteUsers = {};
  * On initiation. `client` is not attached to any project or channel for any specific user.
  */
 options = {
-        mode:"rtc",
-        codec:"h264",
-        appID:"${e://Field/APPID}",
-        channel: "${e://Field/ResponseID}",
-        uid:"1",
-        token:'',
+        mode:null,
+        codec:null,
+        appID:null,
+        channel: null,
+        uid:null,
+        token:null,
       };
 
 AgoraRTC.onAutoplayFailed = () => {
