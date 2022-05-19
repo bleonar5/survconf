@@ -63,9 +63,6 @@ AgoraRTC.onCameraChanged = async (changedDevice) => {
 }
 
 
-$("#leave").click(function (e) {
-  leave();
-})
 
 /*
  * Join a channel, then create local video and audio tracks and publish them to the channel.
