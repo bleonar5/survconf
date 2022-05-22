@@ -84,6 +84,11 @@ async function join() {
     AgoraRTC.createCameraVideoTrack()
   ]);
 
+  localTracks.videoTrack.play("local-player");
+  $("#local-player-name").text(`localVideo(${options.uid})`);
+
+  await client.publish(Object.values(localTracks));
+
   jQuery('#continue-button').on('click',async function(event) {
   	await leave();
 
