@@ -1,5 +1,5 @@
 
-  $('#joinButton').on('click',function(){
+  $('#joinButton').on('click',async function(){
   	await join();
   });/*
  *  These procedures use Agora Video Call SDK for Web to enable local and remote
