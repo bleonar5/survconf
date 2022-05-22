@@ -10,15 +10,12 @@
  * @param {string} mode - The {@link https://docs.agora.io/en/Voice/API%20Reference/web_ng/interfaces/clientconfig.html#mode| streaming algorithm} used by Agora SDK.
  * @param  {string} codec - The {@link https://docs.agora.io/en/Voice/API%20Reference/web_ng/interfaces/clientconfig.html#codec| client codec} used by the browser.
  */
-var client = AgoraRTC.createClient({ mode: "rtc", codec: "vp8" });
+var client = [];
 
 /*
  * Clear the video and audio tracks used by `client` on initiation.
  */
-var localTracks = {
-  videoTrack: null,
-  audioTrack: null
-};
+var localTracks = [];
 
 /*
  * On initiation no users are connected.
