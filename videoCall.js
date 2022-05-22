@@ -1,9 +1,4 @@
-document.onload = function(){
-	console.log('go go');
-  $('#joinButton').on('click',async function(){
-  	await join();
-  });
-}
+
   /*
  *  These procedures use Agora Video Call SDK for Web to enable local and remote
  *  users to join and leave a Video Call channel managed by Agora Platform.
@@ -80,6 +75,7 @@ async function join() {
   client.on("user-published", handleUserPublished);
   client.on("user-unpublished", handleUserUnpublished);
 
+  console.log(options);
   // Join a channel and create local tracks. Best practice is to use Promise.all and run them concurrently.
   [ options.uid, localTracks.audioTrack, localTracks.videoTrack ] = await Promise.all([
     // Join the channel.
