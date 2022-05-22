@@ -90,6 +90,32 @@ async function join() {
   // Publish the local video and audio tracks to the channel.
   await client.publish(Object.values(localTracks));
   console.log("publish success");
+
+  if(localTracks.audioTrack._enabled){
+  	jQuery('#audio-connected').text('Success');
+  	jQuery('#audio-connected').css('color','green');
+  }
+  else{
+    jQuery('#audio-connected').text('Failed');
+    jQuery('#audio-connected').css('color','red');
+  }
+  if(localTracks.videoTrack._enabled){
+  	jQuery('#video-connected').text('Success');
+  	jQuery('#video-connected').css('color','green');
+  }
+  else{
+    jQuery('#video-connected').text('Failed');
+    jQuery('#video-connected').css('color','red');
+  }
+  if(localTracks.videoTrack._enabled && localTracks.audioTrack._enabled || ((localTracks.videoTrack._enabled && videoOnly) || (localTracks.audioTrack._enabled && audioOnly)) ){
+    jQuery('#continue-button').text('Click here to continue');
+    jQuery('#continue-button').css('color','white');
+    jQuery('#continue-button').attr('disabled',false);
+  }
+  else{
+    jQuery('#continue-button').text('Connection Failed. Change your settings and refresh to try again. Otherwise, you are not eligible for this study.');
+  }
+  
 }
 
 /*
