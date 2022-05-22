@@ -161,6 +161,7 @@ async function subscribe(user, mediaType) {
  * @param {trackMediaType - The {@link https://docs.agora.io/en/Voice/API%20Reference/web_ng/interfaces/itrack.html#trackmediatype | media type} to add.
  */
 function handleUserPublished(user, mediaType) {
+	console.log('user published');
   const id = user.uid;
   remoteUsers[id] = user;
   subscribe(user, mediaType);
@@ -172,6 +173,8 @@ function handleUserPublished(user, mediaType) {
  * @param  {string} user - The {@link  https://docs.agora.io/en/Voice/API%20Reference/web_ng/interfaces/iagorartcremoteuser.html| remote user} to remove.
  */
 function handleUserUnpublished(user, mediaType) {
+	console.log('user unpublished');
+
   if (mediaType === 'video') {
     const id = user.uid;
     delete remoteUsers[id];
