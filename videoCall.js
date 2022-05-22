@@ -127,6 +127,7 @@ async function join() {
  * Stop all local and remote tracks then leave the channel.
  */
 async function leave() {
+  console.log('leaving');
   for (trackName in localTracks) {
     var track = localTracks[trackName];
     if(track) {
@@ -138,14 +139,12 @@ async function leave() {
 
   // Remove remote users and player views.
   remoteUsers = {};
-  $("#remote-playerlist").html("");
 
+  console.log('leaving client');
   // leave the channel
   await client.leave();
 
-  $("#local-player-name").text("");
-  $("#join").attr("disabled", false);
-  $("#leave").attr("disabled", true);
+
   console.log("client leaves channel success");
 }
 
