@@ -116,7 +116,7 @@ async function join() {
     jQuery('#continue-button').text('Connection Failed. Change your settings and refresh to try again. Otherwise, you are not eligible for this study.');
   }
 
-  jQuery('#continue-button').onclick(async function(event){
+  jQuery('#continue-button').on('click',async function(event){
   	event.preventDefault();
   	await leave();
   })
