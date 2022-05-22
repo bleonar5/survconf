@@ -126,7 +126,10 @@ async function leave() {
     var track = localTracks[trackName];
     if(track) {
       track.stop();
-      track.close();
+      try
+      	track.close();
+      catch(error)
+      	console.log(error);
       localTracks[trackName] = undefined;
     }
   }
