@@ -146,7 +146,6 @@ async function subscribe(user, mediaType) {
         <div id="player-${uid}" class="player"></div>
       </div>
     `);
-    $("#remote-playerlist").append(player);
     user.videoTrack.play(`player-${uid}`);
   }
   if (mediaType === 'audio') {
