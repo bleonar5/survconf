@@ -1,4 +1,4 @@
-window.onload = function(){
+document.onload = function(){
 	console.log('go go');
   $('#joinButton').on('click',async function(){
   	await join();
