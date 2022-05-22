@@ -140,12 +140,13 @@ async function subscribe(user, mediaType) {
   await client.subscribe(user, mediaType);
   console.log("subscribe success");
   if (mediaType === 'video') {
-    const player = $(`
+    const player = jQuery(`
       <div id="player-wrapper-${uid}">
         <p class="player-name">remoteUser(${uid})</p>
         <div id="player-${uid}" class="player"></div>
       </div>
     `);
+    jQuery("#remote-playerlist").append(player);
     user.videoTrack.play(`player-${uid}`);
   }
   if (mediaType === 'audio') {
