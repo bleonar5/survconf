@@ -84,13 +84,6 @@ async function join() {
     AgoraRTC.createCameraVideoTrack()
   ]);
 
-  // Play the local video track to the local browser and update the UI with the user ID.
-  localTracks.videoTrack.play("local-player");
-
-  // Publish the local video and audio tracks to the channel.
-  await client.publish(Object.values(localTracks));
-  console.log("publish success");
-
   if(localTracks.audioTrack._enabled){
   	jQuery('#audio-connected').text('Success');
   	jQuery('#audio-connected').css('color','green');
@@ -117,9 +110,7 @@ async function join() {
   }
 
   jQuery('#continue-button').on('click',async function(event) {
-  	//await leave();
-  	localTracks.videoTrack._enabled = false;
-  	localTracks.audioTrack._enabled = false;
+  	await leave();
 
     jQuery('#NextButton').click();
   });
