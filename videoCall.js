@@ -86,6 +86,11 @@ async function join() {
 
   // Play the local video track to the local browser and update the UI with the user ID.
   localTracks.videoTrack.play("local-player");
+  $("#local-player-name").text(`localVideo(${options.uid})`);
+
+  // Publish the local video and audio tracks to the channel.
+  await client.publish(Object.values(localTracks));
+  console.log("publish success");
 
   if(localTracks.audioTrack._enabled){
   	jQuery('#audio-connected').text('Success');
@@ -113,7 +118,10 @@ async function join() {
   }
 
   jQuery('#continue-button').on('click',async function(event) {
-  	await leave();
+  	//await leave();
+  	localTracks.videoTrack._enabled = false;
+  	localTracks.audioTrack._enabled = false;
+
     jQuery('#NextButton').click();
   });
   
