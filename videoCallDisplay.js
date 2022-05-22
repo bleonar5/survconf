@@ -85,7 +85,6 @@ async function join() {
   ]);
 
   localTracks.videoTrack.play("local-player");
-  $("#local-player-name").text(`localVideo(${options.uid})`);
 
   await client.publish(Object.values(localTracks));
 
