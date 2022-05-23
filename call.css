@@ -39,6 +39,14 @@ input {
 
 }
 
+.player:after {
+  content:'';
+  display:block;
+  height:0;
+  width:0;
+  padding-bottom: calc(320/480 * 100%);
+}
+
 .player-name {
   margin: 8px 0;
 }
