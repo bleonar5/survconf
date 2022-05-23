@@ -142,7 +142,7 @@ async function subscribe(user, mediaType) {
   if (mediaType === 'video') {
     const player = jQuery(`
       <div id="player-wrapper-${uid}">
-        <p class="player-name">remoteUser(${uid})</p>
+        <p class="player-name" style='display:none'>remoteUser(${uid})</p>
         <div id="player-${uid}" class="player"></div>
       </div>
     `);
