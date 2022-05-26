@@ -47,6 +47,16 @@ input {
   padding-bottom: calc(320/480 * 100%);
 }
 
+.video-group {
+  width:100%;
+  height:100%;
+}
+
+.video-grid {
+  width:100%;
+  height:100%;
+}
+
 .player-name {
   margin: 8px 0;
 }

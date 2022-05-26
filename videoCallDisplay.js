@@ -24,6 +24,11 @@ var localTracks = [];
  */
 var remoteUsers = {};
 
+var already_started = false;
+var num_streams = 0;
+var group_size = 0;
+var time_left = 0;
+
 /*
  * On initiation. `client` is not attached to any project or channel for any specific user.
  */
@@ -138,6 +143,19 @@ async function subscribe(user, mediaType) {
   const uid = user.uid;
   // subscribe to a remote user
   await client.subscribe(user, mediaType);
+  num_streams += 1;
+
+  if(num_streams >= group_size - 1 && !already_started){
+  	already_started = true;
+  	timer_itv = setInterval(function() {
+                  console.log(time_left);
+                  time_left -= 1;
+                  jQuery('#timer').text(Math.floor(time_left / 60).toString().padStart(2,'0') + ':' + (time_left % 60).toString().padStart(2,'0'));
+                  if (time_left <= 0){
+                      clearInterval(timer_itv);
+                      jQuery('#NextButton').click();}
+                },1000);
+  }
   console.log("subscribe success");
   if (mediaType === 'video') {
     const player = jQuery(`
