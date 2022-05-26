@@ -92,6 +92,20 @@ async function join() {
   localTracks.videoTrack.play("local-player");
 
   await client.publish(Object.values(localTracks));
+  
+  num_streams += 1;
+
+  if(num_streams >= group_size - 1 && !already_started){
+  	already_started = true;
+  	timer_itv = setInterval(function() {
+                  console.log(time_left);
+                  time_left -= 1;
+                  jQuery('#timer').text(Math.floor(time_left / 60).toString().padStart(2,'0') + ':' + (time_left % 60).toString().padStart(2,'0'));
+                  if (time_left <= 0){
+                      clearInterval(timer_itv);
+                      jQuery('#NextButton').click();}
+                },1000);
+  }
 
   jQuery('#continue-button').on('click',async function(event) {
   	await leave();
