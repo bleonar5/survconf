@@ -91,7 +91,7 @@ async function join() {
     AgoraRTC.createCameraVideoTrack()
   ]);
 
-  await videoTrack.setEnabled(false);
+  await localTracks.videoTrack.setEnabled(false);
 
   localTracks.videoTrack.play("local-player");
 
