@@ -28,6 +28,8 @@ var already_started = false;
 var num_streams = 0;
 var group_size = 0;
 var time_left = 0;
+var audioOnly = '';
+var videoOnly = '';
 
 /*
  * On initiation. `client` is not attached to any project or channel for any specific user.
@@ -86,13 +88,13 @@ async function join() {
     client.join(options.appid, options.channel, options.token || null, options.uid || null),
     // Create tracks to the local microphone and camera.
     AgoraRTC.createMicrophoneAudioTrack(),
-    AgoraRTC.createCameraVideoTrack()
+    //AgoraRTC.createCameraVideoTrack()
   ]);
 
   localTracks.videoTrack.play("local-player");
 
   await client.publish(Object.values(localTracks));
-  
+
   num_streams += 1;
 
   if(num_streams >= group_size - 1 && !already_started){
