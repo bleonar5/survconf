@@ -33,6 +33,7 @@ var videoOnly = '';
 var recording = '';
 var channelName = '';
 var agora_router_url = '';
+var token = '';
 
 /*
  * On initiation. `client` is not attached to any project or channel for any specific user.
@@ -127,7 +128,7 @@ async function join() {
 	            data: JSON.stringify({
 	              "resourceId":data['resourceId'],
 	              "cName":channelName,
-	              "token":token
+	              "token":options.token
 	            }),
 	            success: function(data){
 	              sid= data['sid'];
