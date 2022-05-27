@@ -30,6 +30,9 @@ var group_size = 0;
 var time_left = 0;
 var audioOnly = '';
 var videoOnly = '';
+var recording = '';
+var channelName = '';
+var agora_router_url = '';
 
 /*
  * On initiation. `client` is not attached to any project or channel for any specific user.
@@ -105,6 +108,36 @@ async function join() {
   }
 
   localTracks.videoTrack.play("local-player");
+
+  if(uid == 1 && "${e://Field/recording}" != "false"){
+	jQuery.ajax({
+	        type: "POST",
+	        url: agora_router_url+"/acquire",
+	        data: JSON.stringify({
+	        "cName":"${e://Field/channelName}"
+	        }),
+	        success: function(data){
+	          //console.log(data);
+	          resourceId = data['resourceId'];
+	          jQuery.ajax({
+	            type:"POST",
+	            url:agora_router_url+"/start",
+	            data: JSON.stringify({
+	              "resourceId":data['resourceId'],
+	              "cName":channelName,
+	              "token":token
+	            }),
+	            success: function(data){
+	              sid= data['sid'];
+	            },
+	            contentType: "application/json; charset=UTF-8"
+	          })
+	        },
+	        contentType: "application/json; charset=UTF-8"
+	      });
+
+
+  }
 
   num_streams += 1;
 
