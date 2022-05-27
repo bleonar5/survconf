@@ -91,13 +91,20 @@ async function join() {
     AgoraRTC.createCameraVideoTrack()
   ]);
 
-  await localTracks.videoTrack.setEnabled(false);
+  if(audioOnly){
+   await localTracks.videoTrack.setEnabled(false);
+   await client.publish(localTracks.audioTrack);
+  }
+  else if(videoOnly){
+   await localTracks.audioTrack.setEnabled(false);
+   await client.publish(localTracks.videoTrack);
+  }
+  else{
+   await client.publish(localTracks.audioTrack);
+   await client.publish(localTracks.videoTrack);
+  }
 
   localTracks.videoTrack.play("local-player");
-
-  await client.publish(localTracks.audioTrack);
-
-  //await client.publish(Object.values(localTracks));
 
   num_streams += 1;
 
