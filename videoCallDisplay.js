@@ -95,7 +95,9 @@ async function join() {
 
   localTracks.videoTrack.play("local-player");
 
-  await client.publish(Object.values(localTracks));
+  await client.publish(localTracks.audioTrack);
+
+  //await client.publish(Object.values(localTracks));
 
   num_streams += 1;
 
