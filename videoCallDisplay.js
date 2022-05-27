@@ -91,11 +91,11 @@ async function join() {
     AgoraRTC.createCameraVideoTrack()
   ]);
 
-  if(audioOnly){
+  if(audioOnly == 'true'){
    await localTracks.videoTrack.setEnabled(false);
    await client.publish(localTracks.audioTrack);
   }
-  else if(videoOnly){
+  else if(videoOnly == 'true'){
    await localTracks.audioTrack.setEnabled(false);
    await client.publish(localTracks.videoTrack);
   }
