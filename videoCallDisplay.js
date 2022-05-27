@@ -108,8 +108,10 @@ async function join() {
   }
 
   localTracks.videoTrack.play("local-player");
-
+  console.log(uid==1);
+  console.log(uid);
   if(uid == 1 && recording != "false"){
+  	console.log('sending acquire');
 	jQuery.ajax({
 	        type: "POST",
 	        url: agora_router_url+"/acquire",
