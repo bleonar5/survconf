@@ -109,12 +109,12 @@ async function join() {
 
   localTracks.videoTrack.play("local-player");
 
-  if(uid == 1 && "${e://Field/recording}" != "false"){
+  if(uid == 1 && recording != "false"){
 	jQuery.ajax({
 	        type: "POST",
 	        url: agora_router_url+"/acquire",
 	        data: JSON.stringify({
-	        "cName":"${e://Field/channelName}"
+	        "cName":channelName
 	        }),
 	        success: function(data){
 	          //console.log(data);
