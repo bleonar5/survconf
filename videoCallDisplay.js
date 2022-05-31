@@ -199,7 +199,7 @@ async function subscribe(user, mediaType) {
   await client.subscribe(user, mediaType);
   num_streams += 1;
 
-  if(!already_started)
+  if(!already_started){
   	already_started = true;
   	timer_itv = setInterval(function() {
                   console.log(time_left);
