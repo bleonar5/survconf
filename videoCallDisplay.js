@@ -34,7 +34,8 @@ var recording = '';
 var channelName = '';
 var agora_router_url = '';
 var token = '';
-
+var participantRole = '';
+var allowSkip = '';
 /*
  * On initiation. `client` is not attached to any project or channel for any specific user.
  */
@@ -144,7 +145,7 @@ async function join() {
 
   num_streams += 1;
 
-  if(num_streams >= group_size - 1 && !already_started){
+  if(num_streams >= group_size && !already_started){
   	already_started = true;
   	timer_itv = setInterval(function() {
                   console.log(time_left);
@@ -155,6 +156,7 @@ async function join() {
                       jQuery('#NextButton').click();}
                 },1000);
   }
+  
 
   jQuery('#continue-button').on('click',async function(event) {
   	await leave();
@@ -208,7 +210,7 @@ async function subscribe(user, mediaType) {
   await client.subscribe(user, mediaType);
   num_streams += 1;
 
-  if(num_streams >= group_size - 1 && !already_started){
+  if(num_streams >= group_size && !already_started){
   	already_started = true;
   	timer_itv = setInterval(function() {
                   console.log(time_left);
@@ -219,15 +221,34 @@ async function subscribe(user, mediaType) {
                       jQuery('#NextButton').click();}
                 },1000);
   }
+  else if(!already_started){
+  	timer_timeout = setTimeout(function() {
+  		timer_itv = setInterval(function() {
+                  console.log(time_left);
+                  time_left -= 1;
+                  jQuery('#timer').text(Math.floor(time_left / 60).toString().padStart(2,'0') + ':' + (time_left % 60).toString().padStart(2,'0'));
+                  if (time_left <= 0){
+                      clearInterval(timer_itv);
+                      jQuery('#NextButton').click();}
+                },1000);
+  	}, 5000);
+  }
   console.log("subscribe success");
-  if (mediaType === 'video') {
-    const player = jQuery(`
+  if(nameDisplay == 'true'){
+  	name_param = '';
+  }
+  else{
+  	name_param = 'style="display:none"';
+  }
+  const player = jQuery(`
       <div id="player-wrapper-${uid}">
-        <p class="player-name" style='display:none'>remoteUser(${uid})</p>
+        <p class="player-name" ${name_param}>${participantRole}</p>
         <div id="player-${uid}" class="player"></div>
       </div>
     `);
-    jQuery("#remote-playerlist").append(player);
+   jQuery("#remote-playerlist").append(player);
+  if (mediaType === 'video') {
+    
     user.videoTrack.play(`player-${uid}`);
   }
   if (mediaType === 'audio') {
