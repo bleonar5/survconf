@@ -144,15 +144,6 @@ async function join() {
   }
 
   num_streams += 1;
-
-  	timer_itv = setInterval(function() {
-                  console.log(time_left);
-                  time_left -= 1;
-                  jQuery('#timer').text(Math.floor(time_left / 60).toString().padStart(2,'0') + ':' + (time_left % 60).toString().padStart(2,'0'));
-                  if (time_left <= 0){
-                      clearInterval(timer_itv);
-                      jQuery('#NextButton').click();}
-                },1000);
   
   
 
