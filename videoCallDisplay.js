@@ -244,7 +244,7 @@ async function subscribe(user, mediaType) {
   if (mediaType === 'video') {
     const player = jQuery(`
       <div id="player-wrapper-${uid}">
-        <p class="player-name" ${name_param}>${uid}</p>
+        <p class="player-name" ${name_param}>${rolelist[uid - 1]}</p>
         <div id="player-${uid}" class="player"></div>
       </div>
     `);
