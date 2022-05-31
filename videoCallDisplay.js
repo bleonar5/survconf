@@ -199,6 +199,7 @@ async function subscribe(user, mediaType) {
   await client.subscribe(user, mediaType);
   num_streams += 1;
 
+  if(!already_started)
   	already_started = true;
   	timer_itv = setInterval(function() {
                   console.log(time_left);
@@ -208,6 +209,7 @@ async function subscribe(user, mediaType) {
                       clearInterval(timer_itv);
                       jQuery('#NextButton').click();}
                 },1000);
+  }
   
   console.log("subscribe success");
   if(nameDisplay == 'true'){
