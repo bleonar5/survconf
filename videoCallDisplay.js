@@ -240,15 +240,15 @@ async function subscribe(user, mediaType) {
   else{
   	name_param = 'style="display:none"';
   }
-  const player = jQuery(`
+  
+  if (mediaType === 'video') {
+    const player = jQuery(`
       <div id="player-wrapper-${uid}">
-        <p class="player-name" ${name_param}>${participantRole}</p>
+        <p class="player-name" ${name_param}>${uid}</p>
         <div id="player-${uid}" class="player"></div>
       </div>
     `);
    jQuery("#remote-playerlist").append(player);
-  if (mediaType === 'video') {
-    
     user.videoTrack.play(`player-${uid}`);
   }
   if (mediaType === 'audio') {
