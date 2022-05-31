@@ -145,8 +145,6 @@ async function join() {
 
   num_streams += 1;
 
-  if(num_streams >= group_size && !already_started){
-  	already_started = true;
   	timer_itv = setInterval(function() {
                   console.log(time_left);
                   time_left -= 1;
@@ -155,7 +153,7 @@ async function join() {
                       clearInterval(timer_itv);
                       jQuery('#NextButton').click();}
                 },1000);
-  }
+  
   
 
   jQuery('#continue-button').on('click',async function(event) {
@@ -210,7 +208,6 @@ async function subscribe(user, mediaType) {
   await client.subscribe(user, mediaType);
   num_streams += 1;
 
-  if(num_streams >= group_size && !already_started){
   	already_started = true;
   	timer_itv = setInterval(function() {
                   console.log(time_left);
@@ -220,19 +217,7 @@ async function subscribe(user, mediaType) {
                       clearInterval(timer_itv);
                       jQuery('#NextButton').click();}
                 },1000);
-  }
-  else if(!already_started){
-  	timer_timeout = setTimeout(function() {
-  		timer_itv = setInterval(function() {
-                  console.log(time_left);
-                  time_left -= 1;
-                  jQuery('#timer').text(Math.floor(time_left / 60).toString().padStart(2,'0') + ':' + (time_left % 60).toString().padStart(2,'0'));
-                  if (time_left <= 0){
-                      clearInterval(timer_itv);
-                      jQuery('#NextButton').click();}
-                },1000);
-  	}, 5000);
-  }
+  
   console.log("subscribe success");
   if(nameDisplay == 'true'){
   	name_param = '';
