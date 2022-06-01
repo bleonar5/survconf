@@ -261,6 +261,10 @@ function handleUserUnpublished(user, mediaType) {
     delete remoteUsers[id];
     console.log('TEST:');
     console.log(remoteUsers);
+    if(remoteUsers.keys.length == 0 and time_left != 0){
+    	time_left = 0;
+    	Qualtrics.SurveyEngine.setEmbeddedData("callCompleted", "false");
+    }
     $(`#player-wrapper-${id}`).remove();
 
   }
