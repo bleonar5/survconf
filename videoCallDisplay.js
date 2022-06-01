@@ -263,7 +263,7 @@ function handleUserUnpublished(user, mediaType) {
     delete remoteUsers[id];
     console.log('TEST:');
     console.log(remoteUsers);
-    if(remoteUsers.keys.length == 0 && time_left > 0){
+    if(jQuery.isEmptyObject(remoteUsers) && time_left > 0){
     	clearInterval(timer_itv);
         jQuery('#NextButton').click();
     }
