@@ -36,6 +36,7 @@ var agora_router_url = '';
 var token = '';
 var participantRole = '';
 var allowSkip = '';
+var skipAfter = '';
 /*
  * On initiation. `client` is not attached to any project or channel for any specific user.
  */
@@ -258,6 +259,8 @@ function handleUserUnpublished(user, mediaType) {
   if (mediaType === 'video') {
     const id = user.uid;
     delete remoteUsers[id];
+    console.log('TEST:');
+    console.log(remoteUsers);
     $(`#player-wrapper-${id}`).remove();
 
   }
