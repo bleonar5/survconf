@@ -208,6 +208,7 @@ async function subscribe(user, mediaType) {
                   jQuery('#timer').text(Math.floor(time_left / 60).toString().padStart(2,'0') + ':' + (time_left % 60).toString().padStart(2,'0'));
                   if (time_left <= 0){
                       clearInterval(timer_itv);
+                      Qualtrics.SurveyEngine.setEmbeddedData("callCompleted", "true");
                       jQuery('#NextButton').click();}
                 },1000);
   }
@@ -261,9 +262,9 @@ function handleUserUnpublished(user, mediaType) {
     delete remoteUsers[id];
     console.log('TEST:');
     console.log(remoteUsers);
-    if(remoteUsers.keys.length == 0 && time_left != 0){
-    	time_left = 0;
-    	Qualtrics.SurveyEngine.setEmbeddedData("callCompleted", "false");
+    if(remoteUsers.keys.length == 0 && time_left > 0){
+    	clearInterval(timer_itv);
+        jQuery('#NextButton').click();
     }
     $(`#player-wrapper-${id}`).remove();
 
