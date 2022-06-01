@@ -148,12 +148,6 @@ async function join() {
   num_streams += 1;
   
   
-
-  jQuery('#continue-button').on('click',async function(event) {
-  	await leave();
-
-    jQuery('#NextButton').click();
-  });
   
 }
 
