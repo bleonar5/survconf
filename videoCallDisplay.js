@@ -29,6 +29,7 @@ var num_streams = 0;
 var group_size = 0;
 var time_left = 0;
 var timer_itv = '';
+var skip_itv = '';
 var audioOnly = '';
 var videoOnly = '';
 var recording = '';
@@ -147,7 +148,7 @@ async function join() {
 
   num_streams += 1;
   
-  
+
   
 }
 
