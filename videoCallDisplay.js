@@ -146,6 +146,19 @@ async function join() {
 
   }
 
+  if(!already_started){
+  	already_started = true;
+  	timer_itv = setInterval(function() {
+                  console.log(time_left);
+                  time_left -= 1;
+                  jQuery('#timer').text(Math.floor(time_left / 60).toString().padStart(2,'0') + ':' + (time_left % 60).toString().padStart(2,'0'));
+                  if (time_left <= 0){
+                      clearInterval(timer_itv);
+                      Qualtrics.SurveyEngine.setEmbeddedData("callCompleted", "true");
+                      jQuery('#NextButton').click();}
+                },1000);
+  }
+
   num_streams += 1;
   
 
