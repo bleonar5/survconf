@@ -204,6 +204,7 @@ async function leave() {
  * @param {trackMediaType - The {@link https://docs.agora.io/en/Voice/API%20Reference/web_ng/interfaces/itrack.html#trackmediatype | media type} to add.
  */
 async function subscribe(user, mediaType) {
+	console.log("MEDIA TYPE: " + mediaType);
   const uid = user.uid;
   // subscribe to a remote user
   await client.subscribe(user, mediaType);
