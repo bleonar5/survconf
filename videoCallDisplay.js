@@ -241,6 +241,13 @@ async function subscribe(user, mediaType) {
     user.videoTrack.play(`player-${uid}`);
   }
   if (mediaType === 'audio') {
+  	const player = jQuery(`
+      <div id="player-wrapper-${uid}">
+        <p class="player-name" ${name_param}>${rolelist[uid - 1]}</p>
+        <div id="player-${uid}" class="player"></div>
+      </div>
+    `);
+   jQuery("#remote-playerlist").append(player);
     user.audioTrack.play();
   }
 }
