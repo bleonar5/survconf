@@ -103,7 +103,8 @@ async function join() {
   	console.log('audioOnly');
    await localTracks.videoTrack.setEnabled(false);
    await client.publish(localTracks.audioTrack);
-   $('#local-player').css("border:solid black 3px;");
+   localTracks.videoTrack.play("local-player");
+   $('#local-player > div').style('background-color:white').append(`<h3 class='audio-name'>`);
   }
   else if(videoOnly == 'true'){
   	console.log('videoOnly');
