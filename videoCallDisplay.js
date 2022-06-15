@@ -106,6 +106,30 @@ async function join() {
    localTracks.videoTrack.play("local-player");
    jQuery('#local-player > div').css('background-color','white').css('display','table').css('border','3px solid black').append(`<h3 class='audio-name'>${participantRole}</h3>`);
    jQuery('.agora_video_player').css('display','none');
+   client.enableAudioVolumeIndicator();
+	client.on("volume-indicator", volumes => {
+	    volumes.forEach((volume) => {
+	        console.log(`UID ${volume.uid} Level ${volume.level}`);
+	        if (options.uid == volume.uid && volume.level > 5) {
+	            $("#local-player").css({
+	                "box-shadow": "0 2px 4px 0 #0C9DFD, 0 2px 5px 0 #0C9DFD"
+	            });
+	        } else if (options.uid == volume.uid && volume.level < 5) {
+	            $("#local-player").css({
+	                "box-shadow": "none"
+	            });
+	        }
+	        if (options.uid != volume.uid && volume.level > 5) {
+	            $("#player-" + volume.uid).css({
+	                "box-shadow": "0 2px 4px 0 #0C9DFD, 0 2px 5px 0 #0C9DFD"
+	            });
+	        } else if (options.uid != volume.uid && volume.level < 5) {
+	            $("#player-" + volume.uid).css({
+	                "box-shadow": "none"
+	            });
+	        }
+	    });
+	});
   }
   else if(videoOnly == 'true'){
   	console.log('videoOnly');
