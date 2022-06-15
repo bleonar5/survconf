@@ -104,6 +104,7 @@ async function join() {
    await localTracks.videoTrack.setEnabled(false);
    await client.publish(localTracks.audioTrack);
    localTracks.videoTrack.play("local-player");
+   localTracks.audioTrack.play();
    jQuery('#local-player > div').css('background-color','white').css('display','table').css('border','3px solid black').append(`<h3 class='audio-name'>${participantRole}</h3>`);
    jQuery('.agora_video_player').css('display','none');
    client.enableAudioVolumeIndicator();
