@@ -100,16 +100,19 @@ async function join() {
   ]);
 
   if(audioOnly == 'true'){
+  	console.log('audioOnly');
    await localTracks.videoTrack.setEnabled(false);
    await client.publish(localTracks.audioTrack);
    $('#local-player').css("border:solid black 3px;");
   }
   else if(videoOnly == 'true'){
+  	console.log('videoOnly');
    await localTracks.audioTrack.setEnabled(false);
    await client.publish(localTracks.videoTrack);
    localTracks.videoTrack.play("local-player");
   }
   else{
+  	console.log('neither');
    await client.publish(localTracks.audioTrack);
    await client.publish(localTracks.videoTrack);
    localTracks.videoTrack.play("local-player");
