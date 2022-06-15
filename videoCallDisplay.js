@@ -249,7 +249,8 @@ async function subscribe(user, mediaType) {
       </div>
     `);
    jQuery("#remote-playerlist").append(player);
-    user.audioTrack.play();
+   user.videoTrack.play(`player-${uid}`);
+    //user.audioTrack.play();
   }
 }
 
