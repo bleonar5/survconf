@@ -258,7 +258,9 @@ async function subscribe(user, mediaType) {
       </div>
     `);
    jQuery("#remote-playerlist").append(player);
-   user.videoTrack.play(`player-${uid}`);
+   user.audioTrack.play();
+   
+   jQuery(`#player-${uid}`).append(`<div class="agora_video_player" style="width: 100%; height: 100%; position: relative; overflow: hidden; background-color: white; display: table; border: 3px solid black;"></div>`)
    jQuery(`#player-${uid} > div`).css('background-color','white').css('display','table').css('border','3px solid black').append(`<h3 class='audio-name'>${rolelist[uid - 1]}</h3>`);
    jQuery('.agora_video_player').css('display','none');
 
