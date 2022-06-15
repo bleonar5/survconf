@@ -104,7 +104,7 @@ async function join() {
    await localTracks.videoTrack.setEnabled(false);
    await client.publish(localTracks.audioTrack);
    localTracks.videoTrack.play("local-player");
-   $('#local-player > div').style('background-color:white').append(`<h3 class='audio-name'>`);
+   jQuery('#local-player > div').style('background-color:white').append(`<h3 class='audio-name'>`);
   }
   else if(videoOnly == 'true'){
   	console.log('videoOnly');
@@ -291,7 +291,7 @@ function handleUserUnpublished(user, mediaType) {
     	clearInterval(timer_itv);
         jQuery('#NextButton').click();
     }
-    $(`#player-wrapper-${id}`).remove();
+    jQuery(`#player-wrapper-${id}`).remove();
 
   }
 }
