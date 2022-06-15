@@ -102,17 +102,19 @@ async function join() {
   if(audioOnly == 'true'){
    await localTracks.videoTrack.setEnabled(false);
    await client.publish(localTracks.audioTrack);
+   $('#local-player').css("border:solid black 3px;");
   }
   else if(videoOnly == 'true'){
    await localTracks.audioTrack.setEnabled(false);
    await client.publish(localTracks.videoTrack);
+   localTracks.videoTrack.play("local-player");
   }
   else{
    await client.publish(localTracks.audioTrack);
    await client.publish(localTracks.videoTrack);
+   localTracks.videoTrack.play("local-player");
   }
 
-  localTracks.videoTrack.play("local-player");
   console.log(uid==1);
   console.log(uid);
   if(uid == 1 && recording != "false"){
@@ -245,12 +247,13 @@ async function subscribe(user, mediaType) {
   	const player = jQuery(`
       <div id="player-wrapper-${uid}">
         <p class="player-name" ${name_param}>${rolelist[uid - 1]}</p>
-        <div id="player-${uid}" class="player"></div>
+        <div id="player-${uid}" class="player">
+
+        </div>
       </div>
     `);
    jQuery("#remote-playerlist").append(player);
-   user.videoTrack.play(`player-${uid}`);
-    //user.audioTrack.play();
+    user.audioTrack.play();
   }
 }
 
