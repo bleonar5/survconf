@@ -104,7 +104,7 @@ async function join() {
    await localTracks.videoTrack.setEnabled(false);
    await client.publish(localTracks.audioTrack);
    localTracks.videoTrack.play("local-player");
-   jQuery('#local-player > div').style('background-color:white').append(`<h3 class='audio-name'>`);
+   jQuery('#local-player > div').css('background-color:white').append(`<h3 class='audio-name'>`);
   }
   else if(videoOnly == 'true'){
   	console.log('videoOnly');
