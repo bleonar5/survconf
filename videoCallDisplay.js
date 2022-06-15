@@ -104,7 +104,8 @@ async function join() {
    await localTracks.videoTrack.setEnabled(false);
    await client.publish(localTracks.audioTrack);
    localTracks.videoTrack.play("local-player");
-   jQuery('#local-player > div').css('background-color:white').append(`<h3 class='audio-name'>`);
+   jQuery('#local-player > div').css('background-color','white').append(`<h3 class='audio-name'>Name</h3>`);
+   jQuery('.agora_video_player').css('display','none');
   }
   else if(videoOnly == 'true'){
   	console.log('videoOnly');
