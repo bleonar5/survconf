@@ -74,11 +74,5 @@ input {
 .audio-name {
   height:inherit;
   vertical-align:bottom;
-  margin:0;
   display:table-cell;
-}
-.audio-name:after{
-  content:'';
-  display:block;
-  height:10px;
 }
