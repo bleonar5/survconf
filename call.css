@@ -72,7 +72,8 @@ input {
   }
 }
 .audio-name {
-  height:inherit;
-  vertical-align:bottom;
+  vertical-align:middle;
+  text-align:center;
   display:table-cell;
+
 }
