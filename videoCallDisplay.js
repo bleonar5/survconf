@@ -39,6 +39,7 @@ var token = '';
 var participantRole = '';
 var allowSkip = '';
 var skipAfter = '';
+var lastJoinItv = '';
 /*
  * On initiation. `client` is not attached to any project or channel for any specific user.
  */
@@ -154,7 +155,7 @@ async function join() {
 
   }
 
-  if(!already_started && (group_size == 1)){
+  if(!already_started && (group_size == 1 || stream.remoteUsers.length == group_size - 1){
   	already_started = true;
   	timer_itv = setInterval(function() {
                   console.log(time_left);
@@ -269,6 +270,38 @@ async function subscribe(user, mediaType) {
   	
 
   }
+
+  if(!already_started){
+  	if(client.remoteUsers.length > group_size - 1){
+  		already_started = true;
+	  	timer_itv = setInterval(function() {
+	                  console.log(time_left);
+	                  time_left -= 1;
+	                  jQuery('#timer').text(Math.floor(time_left / 60).toString().padStart(2,'0') + ':' + (time_left % 60).toString().padStart(2,'0'));
+	                  if (time_left <= 0){
+	                      clearInterval(timer_itv);
+	                      Qualtrics.SurveyEngine.setEmbeddedData("callCompleted", "true");
+	                      jQuery('#NextButton').click();}
+	                },1000);
+  	}
+  	else{
+  		lastJoinItv = setTimeout(function(){
+	  		already_started = true;
+		  	timer_itv = setInterval(function() {
+		                  console.log(time_left);
+		                  time_left -= 1;
+		                  jQuery('#timer').text(Math.floor(time_left / 60).toString().padStart(2,'0') + ':' + (time_left % 60).toString().padStart(2,'0'));
+		                  if (time_left <= 0){
+		                      clearInterval(timer_itv);
+		                      Qualtrics.SurveyEngine.setEmbeddedData("callCompleted", "true");
+		                      jQuery('#NextButton').click();}
+		                },1000);
+		  },5000);
+  	}
+  	
+
+  }
+
 }
 
 /*
