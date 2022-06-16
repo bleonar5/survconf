@@ -40,6 +40,7 @@ var participantRole = '';
 var allowSkip = '';
 var skipAfter = '';
 var lastJoinItv = '';
+var timeToWait = '';
 /*
  * On initiation. `client` is not attached to any project or channel for any specific user.
  */
@@ -290,7 +291,7 @@ async function subscribe(user, mediaType) {
 		                      Qualtrics.SurveyEngine.setEmbeddedData("callCompleted", "true");
 		                      jQuery('#NextButton').click();}
 		                },1000);
-		  },5000);
+		  },timeToWait * 1000);
   	}
   	
 
