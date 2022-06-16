@@ -263,7 +263,7 @@ async function subscribe(user, mediaType) {
   if(!already_started){
   	clearTimeout(lastJoinItv);
 
-  	if(client.remoteUsers.length > group_size - 1){
+  	if(client.remoteUsers.length >= group_size - 1){
   		console.log('timer started group full');
   		already_started = true;
 	  	timer_itv = setInterval(function() {
