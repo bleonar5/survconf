@@ -155,7 +155,7 @@ async function join() {
 
   }
 
-  if(!already_started && (group_size == 1 || stream.remoteUsers.length == group_size - 1){
+  if(!already_started && (group_size == 1 || stream.remoteUsers.length == group_size - 1)){
   	already_started = true;
   	timer_itv = setInterval(function() {
                   console.log(time_left);
