@@ -156,6 +156,7 @@ async function join() {
   }
 
   if(!already_started && (group_size == 1 || stream.remoteUsers.length == group_size - 1)){
+  	console.log("timer started solo / group full");
   	already_started = true;
   	timer_itv = setInterval(function() {
                   console.log(time_left);
@@ -219,18 +220,6 @@ async function subscribe(user, mediaType) {
   await client.subscribe(user, mediaType);
   num_streams += 1;
 
-  if(!already_started){
-  	already_started = true;
-  	timer_itv = setInterval(function() {
-                  console.log(time_left);
-                  time_left -= 1;
-                  jQuery('#timer').text(Math.floor(time_left / 60).toString().padStart(2,'0') + ':' + (time_left % 60).toString().padStart(2,'0'));
-                  if (time_left <= 0){
-                      clearInterval(timer_itv);
-                      Qualtrics.SurveyEngine.setEmbeddedData("callCompleted", "true");
-                      jQuery('#NextButton').click();}
-                },1000);
-  }
   
   console.log("subscribe success");
   if(nameDisplay == 'true'){
@@ -272,7 +261,9 @@ async function subscribe(user, mediaType) {
   }
 
   if(!already_started){
+
   	if(client.remoteUsers.length > group_size - 1){
+  		console.log('timer started group full');
   		already_started = true;
 	  	timer_itv = setInterval(function() {
 	                  console.log(time_left);
@@ -285,7 +276,9 @@ async function subscribe(user, mediaType) {
 	                },1000);
   	}
   	else{
+  		console.log('timer waiting 5 seconds for next join');
   		lastJoinItv = setTimeout(function(){
+  			console.log('timer started, 5 second timeout')
 	  		already_started = true;
 		  	timer_itv = setInterval(function() {
 		                  console.log(time_left);
