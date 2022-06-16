@@ -250,20 +250,23 @@ async function subscribe(user, mediaType) {
     user.videoTrack.play(`player-${uid}`);
   }
   if (mediaType === 'audio') {
-  	const player = jQuery(`
-      <div id="player-wrapper-${uid}">
-        <p class="player-name" ${name_param}>${rolelist[uid - 1]}</p>
-        <div id="player-${uid}" class="player">
+  	user.audioTrack.play();
+  	if(audioOnly == 'true'){
+  		const player = jQuery(`
+	      <div id="player-wrapper-${uid}">
+	        <p class="player-name" ${name_param}>${rolelist[uid - 1]}</p>
+	        <div id="player-${uid}" class="player">
 
-        </div>
-      </div>
-    `);
-   jQuery("#remote-playerlist").append(player);
-   user.audioTrack.play();
-   
-   jQuery(`#player-${uid}`).append(`<div style="width: 100%; height: 100%; position: relative; overflow: hidden; background-color: white; display: table; border: 3px solid black;"></div>`)
-   jQuery(`#player-${uid} > div`).css('background-color','white').css('display','table').css('border','3px solid black').append(`<h3 class='audio-name'>${rolelist[uid - 1]}</h3>`);
-   jQuery('.agora_video_player').css('display','none');
+	        </div>
+	      </div>
+	    `);
+	   jQuery("#remote-playerlist").append(player);
+	   
+	   jQuery(`#player-${uid}`).append(`<div style="width: 100%; height: 100%; position: relative; overflow: hidden; background-color: white; display: table; border: 3px solid black;"></div>`)
+	   jQuery(`#player-${uid} > div`).css('background-color','white').css('display','table').css('border','3px solid black').append(`<h3 class='audio-name'>${rolelist[uid - 1]}</h3>`);
+	   jQuery('.agora_video_player').css('display','none');
+  	}
+  	
 
   }
 }
