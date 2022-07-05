@@ -131,7 +131,7 @@ async function join() {
 	        type: "POST",
 	        url: agora_router_url+"/acquire",
 	        data: JSON.stringify({
-	        "cName":channelName+"_"+stage
+	        "cName":options.channel
 	        }),
 	        success: function(data){
 	          //console.log(data);
@@ -141,7 +141,7 @@ async function join() {
 	            url:agora_router_url+"/start",
 	            data: JSON.stringify({
 	              "resourceId":data['resourceId'],
-	              "cName":channelName+"_"+stage,
+	              "cName":options.channel,
 	              "token":options.token
 	            }),
 	            success: function(data){
