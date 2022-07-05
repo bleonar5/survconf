@@ -156,7 +156,7 @@ async function join() {
 
   }
 
-  if(!already_started && (group_size == 1 || stream.remoteUsers.length == group_size - 1)){
+  if(!already_started && (group_size == 1 || client.remoteUsers.length == group_size - 1)){
   	console.log("timer started solo / group full");
   	already_started = true;
   	timer_itv = setInterval(function() {
