@@ -104,6 +104,7 @@ async function join() {
     jQuery('#continue-button').text('Click here to continue');
     jQuery('#continue-button').css('color','white');
     jQuery('#continue-button').attr('disabled',false);
+    await leave();
   }
   else{
     jQuery('#continue-button').text('Connection Failed. Change your settings and refresh to try again. Otherwise, you are not eligible for this study.');
